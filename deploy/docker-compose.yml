@@ -1,0 +1,65 @@
+# DataQnA 一键启动：postgres(pgvector) + redis + api + frontend(nginx)
+# 用法（在 deploy/ 目录下）:
+#   docker compose up -d --build
+# 访问: http://localhost:5173
+# 仅起依赖栈（本地 uv/pnpm 跑应用）:
+#   docker compose up -d postgres redis
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: dataqna-postgres
+    environment:
+      POSTGRES_USER: dataqna
+      POSTGRES_PASSWORD: dataqna
+      POSTGRES_DB: dataqna
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dataqna -d dataqna"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  redis:
+    image: redis:7-alpine
+    container_name: dataqna-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  api:
+    build:
+      context: ../backend
+    container_name: dataqna-api
+    environment:
+      DATAQNA_DATABASE_URL: postgresql+asyncpg://dataqna:dataqna@postgres:5432/dataqna
+      DATAQNA_ANALYTICS_URL: postgresql+asyncpg://analytics_ro:analytics_ro@postgres:5432/dataqna
+      DATAQNA_REDIS_URL: redis://redis:6379/0
+      DATAQNA_LLM_PROVIDER: stub
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      # 宿主机 8010（8000 常被其它服务占用），容器内仍为 8000
+      - "8010:8000"
+
+  frontend:
+    build:
+      context: ../frontend
+    container_name: dataqna-frontend
+    depends_on:
+      - api
+    ports:
+      - "5173:80"
+
+volumes:
+  pgdata:

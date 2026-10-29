@@ -1,0 +1,426 @@
+# DataQnA 指标语义层注册表（真相源）
+# 由 MetricRegistry 加载并校验 I1–I7 不变式；运行时缓存进 semantic_metric 表。
+semantic_version: 1
+
+dimensions:
+  - id: region
+    name_cn: 大区
+    table: dim_region
+    key_column: region_id
+    value_column: region_name
+    join_sql: "JOIN dim_region dr ON dr.region_id = o.region_id"
+    aliases: [大区, 区域]
+    hierarchy: [region, province]
+    value_aliases:
+      华东: [华东, 东部]
+      华南: [华南, 华南大区]
+      华北: [华北, 北部]
+    cardinality_estimate: 7
+
+  - id: province
+    name_cn: 省份
+    table: dim_region
+    key_column: province_id
+    value_column: province_name
+    join_sql: "JOIN dim_region dr ON dr.region_id = o.region_id"
+    aliases: [省份, 省]
+    hierarchy: [region, province]
+    value_aliases: {}
+    cardinality_estimate: 31
+
+  - id: category
+    name_cn: 品类
+    table: dim_category
+    key_column: category_id
+    value_column: category_name
+    join_sql: "JOIN dim_category dc ON dc.category_id = o.category_id"
+    aliases: [品类, 类目, 商品类目]
+    hierarchy: [category, sub_category]
+    value_aliases:
+      手机数码: [手机数码, 3C, 数码]
+      家电: [家电, 家用电器]
+    cardinality_estimate: 12
+
+  - id: sub_category
+    name_cn: 子品类
+    table: dim_category
+    key_column: sub_category_id
+    value_column: sub_category_name
+    join_sql: "JOIN dim_category dc ON dc.category_id = o.category_id"
+    aliases: [子品类, 细分类目]
+    hierarchy: [category, sub_category]
+    value_aliases: {}
+    cardinality_estimate: 48
+
+  - id: channel
+    name_cn: 渠道
+    table: dim_channel
+    key_column: channel_id
+    value_column: channel_name
+    join_sql: "JOIN dim_channel dch ON dch.channel_id = o.channel_id"
+    aliases: [渠道, 来源]
+    hierarchy: [channel]
+    value_aliases:
+      线上: [线上, 电商]
+      线下: [线下, 门店]
+    cardinality_estimate: 5
+
+  - id: user_tier
+    name_cn: 用户等级
+    table: dim_user
+    key_column: tier_id
+    value_column: tier_name
+    join_sql: "JOIN dim_user du ON du.user_id = o.user_id"
+    aliases: [用户等级, 会员等级, 等级]
+    hierarchy: [user_tier]
+    value_aliases: {}
+    cardinality_estimate: 5
+
+  - id: payment_method
+    name_cn: 支付方式
+    table: dim_order_payment
+    key_column: payment_id
+    value_column: payment_name
+    join_sql: "JOIN dim_order_payment dp ON dp.payment_id = o.payment_id"
+    aliases: [支付方式, 付款方式]
+    hierarchy: [payment_method]
+    value_aliases: {}
+    cardinality_estimate: 6
+
+  - id: device
+    name_cn: 设备
+    table: dim_device
+    key_column: device_id
+    value_column: device_name
+    join_sql: "JOIN dim_device dd ON dd.device_id = o.device_id"
+    aliases: [设备, 终端]
+    hierarchy: [device]
+    value_aliases:
+      移动端: [移动端, 手机]
+      PC端: [PC端, 电脑]
+    cardinality_estimate: 4
+
+metrics:
+  - id: gmv_paid
+    name_cn: 成交金额
+    aliases: [GMV, 销售额, 成交额, 营收, 交易额]
+    type: additive
+    expression: "SUM(o.pay_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: CNY
+    precision: 2
+    caliber_cn: "已支付订单金额合计，含运费、不含退款，不限支付方式，订单状态为已支付/已发货/已完成"
+    owner: finance-analytics
+    version: 1
+    tags: [core, finance]
+    risk_level: low
+
+  - id: gmv_gross
+    name_cn: 成交毛额
+    aliases: [毛额, 含退款GMV, 下单金额]
+    type: additive
+    expression: "SUM(o.gross_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: []
+    unit: CNY
+    precision: 2
+    caliber_cn: "下单金额合计（含退款与取消订单），口径区别于成交金额，仅作对比用"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: low
+
+  - id: order_cnt
+    name_cn: 支付订单数
+    aliases: [订单数, 订单量, 支付订单]
+    type: additive
+    expression: "COUNT(DISTINCT o.order_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: 笔
+    precision: 0
+    caliber_cn: "已支付订单去重计数，状态为已支付/已发货/已完成"
+    owner: finance-analytics
+    version: 1
+    tags: [core, finance]
+    risk_level: low
+
+  - id: refund_order_cnt
+    name_cn: 退款订单数
+    aliases: [退款订单, 退款笔数]
+    type: additive
+    expression: "COUNT(DISTINCT o.order_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.refund_status = 'REFUNDED'"]
+    unit: 笔
+    precision: 0
+    caliber_cn: "发生全额或部分退款的订单去重计数"
+    owner: finance-analytics
+    version: 1
+    tags: [finance, service]
+    risk_level: low
+
+  - id: refund_amt
+    name_cn: 退款金额
+    aliases: [退款额, 退款]
+    type: additive
+    expression: "SUM(o.refund_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: []
+    unit: CNY
+    precision: 2
+    caliber_cn: "退款金额合计（按订单支付时间归属）"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: low
+
+  - id: paid_user_cnt
+    name_cn: 支付用户数
+    aliases: [付费用户, 支付人数, 购买用户数]
+    type: additive
+    expression: "COUNT(DISTINCT o.user_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: 人
+    precision: 0
+    caliber_cn: "有已支付订单的去重用户数"
+    owner: growth-analytics
+    version: 1
+    tags: [core, growth]
+    risk_level: low
+
+  - id: visit_cnt
+    name_cn: 访问量
+    aliases: [访问数, PV, 浏览量]
+    type: additive
+    expression: "SUM(o.visit_cnt)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: []
+    unit: 次
+    precision: 0
+    caliber_cn: "订单对应会话的访问次数合计（埋点口径，同一会话去重）"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: low
+
+  - id: item_sales_qty
+    name_cn: 商品销量
+    aliases: [销量, 件数]
+    type: additive
+    expression: "SUM(o.item_qty)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: 件
+    precision: 0
+    caliber_cn: "已支付订单的商品件数合计"
+    owner: merchandise
+    version: 1
+    tags: [merchandise]
+    risk_level: low
+
+  - id: freight_amt
+    name_cn: 运费金额
+    aliases: [运费]
+    type: additive
+    expression: "SUM(o.freight_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: CNY
+    precision: 2
+    caliber_cn: "已支付订单运费合计"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: low
+
+  - id: coupon_amt
+    name_cn: 优惠券金额
+    aliases: [优惠额, 券抵扣, 优惠金额]
+    type: additive
+    expression: "SUM(o.coupon_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: CNY
+    precision: 2
+    caliber_cn: "已支付订单优惠券抵扣金额合计"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: low
+
+  # ---- ratio 指标（分子/分母成对建模，禁止预存比率）----
+
+  - id: refund_rate
+    name_cn: 退款率
+    aliases: [退款率, 退款占比]
+    type: ratio
+    numerator: refund_order_cnt
+    denominator: order_cnt
+    unit: 百分比
+    precision: 4
+    caliber_cn: "退款订单数 ÷ 支付订单数；全局退款率须用 SUM(分子)/SUM(分母)，各品类退款率的算术平均不等于全局值"
+    owner: finance-analytics
+    version: 1
+    tags: [core, finance, service]
+    risk_level: medium
+
+  - id: refund_amt_rate
+    name_cn: 退款金额率
+    aliases: [退款金额占比]
+    type: ratio
+    numerator: refund_amt
+    denominator: gmv_paid
+    unit: 百分比
+    precision: 4
+    caliber_cn: "退款金额 ÷ 成交金额"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: medium
+
+  - id: coupon_rate
+    name_cn: 优惠率
+    aliases: [优惠券率, 券占比]
+    type: ratio
+    numerator: coupon_amt
+    denominator: gmv_paid
+    unit: 百分比
+    precision: 4
+    caliber_cn: "优惠券抵扣金额 ÷ 成交金额"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: medium
+
+  - id: conversion_rate
+    name_cn: 支付转化率
+    aliases: [转化率, 成交转化率]
+    type: ratio
+    numerator: paid_user_cnt
+    denominator: visit_cnt
+    unit: 百分比
+    precision: 4
+    caliber_cn: "支付用户数 ÷ 访问量；分母为会话访问，非独立访客，口径如需独立访客请改维度"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: medium
+
+  - id: avg_order_value
+    name_cn: 客单价
+    aliases: [客单价, AOV, 单均金额]
+    type: ratio
+    numerator: gmv_paid
+    denominator: order_cnt
+    unit: CNY
+    precision: 2
+    caliber_cn: "成交金额 ÷ 支付订单数（全局客单价须 SUM(金额)/SUM(单数)，非各品类客单价的平均）"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: medium
+
+  - id: freight_rate
+    name_cn: 运费占比
+    aliases: [运费率]
+    type: ratio
+    numerator: freight_amt
+    denominator: gmv_paid
+    unit: 百分比
+    precision: 4
+    caliber_cn: "运费金额 ÷ 成交金额"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: medium
+
+  - id: new_user_cnt
+    name_cn: 新增用户数
+    aliases: [新增用户, 新客数]
+    type: additive
+    expression: "COUNT(DISTINCT o.user_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.is_new_user = TRUE", "o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: 人
+    precision: 0
+    caliber_cn: "统计期内首次成交的去重用户数"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: low
+
+  - id: shipment_cnt
+    name_cn: 发货订单数
+    aliases: [发货订单, 发货单数]
+    type: additive
+    expression: "COUNT(DISTINCT o.order_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('SHIPPED','DONE')"]
+    unit: 笔
+    precision: 0
+    caliber_cn: "已发货或已完成订单去重计数"
+    owner: operations
+    version: 1
+    tags: [operations]
+    risk_level: low
+
+  - id: repurchase_user_cnt
+    name_cn: 复购用户数
+    aliases: [复购人数]
+    type: additive
+    expression: "COUNT(DISTINCT o.user_id)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.order_seq > 1", "o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: 人
+    precision: 0
+    caliber_cn: "统计期内非首次下单的去重用户数"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: low
+
+  - id: net_revenue
+    name_cn: 净营收
+    aliases: [净收入, 净额]
+    type: additive
+    expression: "SUM(o.pay_amount - o.refund_amount - o.coupon_amount)"
+    source_tables: [fact_order]
+    default_time_col: "o.paid_at"
+    filters: ["o.status IN ('PAID','SHIPPED','DONE')"]
+    unit: CNY
+    precision: 2
+    caliber_cn: "成交金额 - 退款金额 - 优惠券抵扣，为简化口径的净收入估算"
+    owner: finance-analytics
+    version: 1
+    tags: [finance]
+    risk_level: low
+
+  - id: repurchase_rate
+    name_cn: 复购率
+    aliases: [复购比例]
+    type: ratio
+    numerator: repurchase_user_cnt
+    denominator: paid_user_cnt
+    unit: 百分比
+    precision: 4
+    caliber_cn: "复购用户数 ÷ 支付用户数"
+    owner: growth-analytics
+    version: 1
+    tags: [growth]
+    risk_level: medium

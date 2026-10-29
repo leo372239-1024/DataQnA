@@ -1,0 +1,28 @@
+:root {
+  --dq-code-bg: #f6f8fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 问数流式输出的子目标步骤样式 */
+.dq-subgoal-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,0 +1,33 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# ---- Node ----
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ---- 环境与密钥 ----
+.env
+.env.*
+!.env.example
+
+# ---- 操作系统 ----
+.DS_Store
+Thumbs.db
+
+# ---- 内部工程资产（不对外公开）----
+# Trellis 工作流（规范/任务/PRD/日志）、WorkBuddy 记忆、CodeBuddy 技能
+.trellis/
+.workbuddy/
+.codebuddy/
+AGENTS.md
+
+# ---- 个人材料（不对外公开）----
+docs/简历-*.md

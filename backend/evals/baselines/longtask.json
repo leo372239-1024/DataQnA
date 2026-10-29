@@ -1,0 +1,31 @@
+{
+  "last_run": {
+    "suite": "longtask",
+    "baseline": true,
+    "cases": 10,
+    "task_success_rate": 1.0,
+    "median_latency_ms": 329.27,
+    "total_subgoals": 32,
+    "duplicate_actions": 0
+  },
+  "history": [
+    {
+      "suite": "longtask",
+      "baseline": false,
+      "cases": 10,
+      "task_success_rate": 1.0,
+      "median_latency_ms": 177.88,
+      "total_subgoals": 32,
+      "duplicate_actions": 0
+    },
+    {
+      "suite": "longtask",
+      "baseline": true,
+      "cases": 10,
+      "task_success_rate": 1.0,
+      "median_latency_ms": 329.27,
+      "total_subgoals": 32,
+      "duplicate_actions": 0
+    }
+  ]
+}

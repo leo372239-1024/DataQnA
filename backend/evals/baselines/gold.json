@@ -1,0 +1,74 @@
+{
+  "last_run": {
+    "suite": "gold",
+    "cases": 130,
+    "EX": 1.0,
+    "intent_accuracy": 1.0,
+    "valid_query_rate": 1.0,
+    "non_empty_rate": 1.0,
+    "caliber_consistency": 1.0,
+    "lineage_traceability": 1.0,
+    "per_level": {
+      "L1": {
+        "n": 35,
+        "EX": 1.0
+      },
+      "L2": {
+        "n": 35,
+        "EX": 1.0
+      },
+      "L3": {
+        "n": 30,
+        "EX": 1.0
+      },
+      "L4": {
+        "n": 20,
+        "EX": 1.0
+      },
+      "L5": {
+        "n": 10,
+        "EX": 1.0
+      }
+    },
+    "total": 130,
+    "passed": 130,
+    "failure_breakdown": []
+  },
+  "history": [
+    {
+      "suite": "gold",
+      "cases": 130,
+      "EX": 1.0,
+      "intent_accuracy": 1.0,
+      "valid_query_rate": 1.0,
+      "non_empty_rate": 1.0,
+      "caliber_consistency": 1.0,
+      "lineage_traceability": 1.0,
+      "per_level": {
+        "L1": {
+          "n": 35,
+          "EX": 1.0
+        },
+        "L2": {
+          "n": 35,
+          "EX": 1.0
+        },
+        "L3": {
+          "n": 30,
+          "EX": 1.0
+        },
+        "L4": {
+          "n": 20,
+          "EX": 1.0
+        },
+        "L5": {
+          "n": 10,
+          "EX": 1.0
+        }
+      },
+      "total": 130,
+      "passed": 130,
+      "failure_breakdown": []
+    }
+  ]
+}

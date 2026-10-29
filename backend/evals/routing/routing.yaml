@@ -1,0 +1,91 @@
+cases:
+- id: RT-001
+  level: L1
+  question: 帮我查一下GMV
+  expected_asset_id: sql_query
+  caller_roles:
+  - analyst
+- id: RT-002
+  level: L1
+  question: 退款率环比变化了多少
+  expected_asset_id: compare_analysis
+  caller_roles:
+  - analyst
+- id: RT-003
+  level: L1
+  question: 为什么退款率上升了
+  expected_asset_id: attribution_analysis
+  caller_roles:
+  - analyst
+- id: RT-004
+  level: L1
+  question: 把结果画成柱状图
+  expected_asset_id: chart_render
+  caller_roles:
+  - analyst
+- id: RT-005
+  level: L1
+  question: 导出这份报告
+  expected_asset_id: export_report
+  caller_roles:
+  - analyst
+- id: RT-006
+  level: L1
+  question: GMV这个指标怎么算的
+  expected_asset_id: metric_lookup
+  caller_roles:
+  - analyst
+- id: RT-007
+  level: L1
+  question: 我想看看上个月的经营业绩
+  expected_asset_id: sql_query
+  caller_roles:
+  - analyst
+- id: RT-008
+  level: L1
+  question: 帮我把这个数据和去年同期比一比
+  expected_asset_id: compare_analysis
+  caller_roles:
+  - analyst
+- id: RT-009
+  level: L1
+  question: 哪些因素拉高了退款
+  expected_asset_id: attribution_analysis
+  caller_roles:
+  - analyst
+- id: RT-010
+  level: L1
+  question: 给我一张可视化图表
+  expected_asset_id: chart_render
+  caller_roles:
+  - analyst
+- id: RT-011
+  level: L1
+  question: 把分析结果存成文件
+  expected_asset_id: export_report
+  caller_roles:
+  - analyst
+- id: RT-012
+  level: L1
+  question: 这个指标的定义是什么
+  expected_asset_id: metric_lookup
+  caller_roles:
+  - analyst
+- id: RT-013
+  level: L1
+  question: 最近订单有没有异常波动
+  expected_asset_id: anomaly_detect
+  caller_roles:
+  - analyst
+- id: RT-014
+  level: L1
+  question: 导出报告
+  expected_asset_id: null
+  caller_roles:
+  - viewer
+- id: RT-015
+  level: L1
+  question: 发邮件报告
+  expected_asset_id: null
+  caller_roles:
+  - viewer

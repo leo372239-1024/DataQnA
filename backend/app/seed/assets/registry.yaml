@@ -1,0 +1,145 @@
+# DataQnA 资产注册表（skill/tool 统一真相源）
+# skill = 本地例程；tool = MCP/连接器。permissions 空 = 无特殊角色要求。
+assets:
+  # ---------- Skills（本地例程）----------
+  - id: sql_query
+    kind: skill
+    name: 问数查询
+    description: 将自然语言问数转换为参数化 SQL 并执行只读查询
+    aliases: [查数, 问数, 查询数据, 取数, 查一下, 数据查询, 查GMV, 查订单]
+    domains: [sql, analytics]
+    capability: 根据指标与维度查询数仓并返回结果集，支持经营业绩、营收、订单、用户等业务数据的自然语言问数与数据查看
+    risk: low
+
+  - id: compare_analysis
+    kind: skill
+    name: 同环比分析
+    description: 计算指标相对上一周期或去年同期的变化
+    aliases: [环比, 同比, 对比, 比较, 环比变化, 同比变化, 增长多少, 变化了多少]
+    domains: [analytics, compare]
+    capability: 计算指标的环比与同比变化率及差值，支持与上一周期、去年同期进行对比分析
+    risk: low
+
+  - id: attribution_analysis
+    kind: skill
+    name: 归因分析
+    description: 将指标变化分解到维度，定位主要驱动因素
+    aliases: [归因, 为什么, 原因, 驱动因素, 贡献度, 拆解, 什么导致, 哪个品类]
+    domains: [analytics, attribution]
+    capability: 对指标变化做两因素精确分解并输出贡献度瀑布，定位哪些因素导致指标上升或下降
+    risk: low
+
+  - id: chart_render
+    kind: skill
+    name: 图表渲染
+    description: 将查询结果渲染为柱状/折线/瀑布等图表
+    aliases: [画图, 图表, 可视化, 柱状图, 折线图, 饼图, 瀑布图, 出图]
+    domains: [chart, visualization]
+    capability: 把结果集渲染为柱状图、折线图、饼图、瀑布图等可视化图表配置
+    risk: low
+
+  - id: report_generate
+    kind: skill
+    name: 报告生成
+    description: 将多次查询结果汇总为结构化文字结论
+    aliases: [报告, 总结, 汇总, 生成结论, 周报, 月报, 分析报告]
+    domains: [report, nlp]
+    capability: 汇总多指标结果生成带依据的文字结论与分析报告
+    risk: medium
+
+  - id: export_report
+    kind: skill
+    name: 导出报告
+    description: 将分析结果导出为文件并写入共享空间
+    aliases: [导出, 下载, 导出报告, 导出Excel, 导出CSV, 另存为]
+    domains: [export]
+    capability: 把分析结果导出为 Excel 或 CSV 文件，支持另存为文件
+    permissions: [analyst]
+    risk: high
+    requires_confirmation: true
+
+  - id: metric_lookup
+    kind: skill
+    name: 指标口径查询
+    description: 查询指标的权威口径定义与血缘
+    aliases: [口径, 指标定义, 什么意思, 怎么算的, 指标口径, 计算方式]
+    domains: [semantic, analytics]
+    capability: 返回指标的口径定义、计算方式与分子分母血缘，解释指标的含义
+    risk: low
+
+  - id: anomaly_detect
+    kind: skill
+    name: 异常检测
+    description: 检测指标时序中的异常点
+    aliases: [异常, 突变, 异常点, 波动, 突增, 突降, 检测异常]
+    domains: [analytics, anomaly]
+    capability: 用统计规则检测指标突增突降，识别异常波动
+    risk: medium
+
+  # ---------- Tools（MCP/连接器）----------
+  - id: postgres_readonly
+    kind: tool
+    name: 只读数据库
+    description: 通过 analytics_ro 只读角色执行参数化 SQL
+    aliases: [数据库, 查库, 数仓, postgres, 执行SQL]
+    domains: [sql, data]
+    capability: 以只读角色执行绑定参数 SQL 并返回行集
+    risk: low
+
+  - id: redis_cache
+    kind: tool
+    name: 缓存
+    description: 读写结果缓存（含语义版本/角色哈希）
+    aliases: [缓存, cache, redis, 查缓存]
+    domains: [infra, cache]
+    capability: 按键读写带版本哈希的查询结果缓存
+    risk: low
+
+  - id: vector_search
+    kind: tool
+    name: 向量检索
+    description: 对语义记忆做向量相似检索
+    aliases: [向量, 相似, 检索, 召回, embedding, 相似记忆]
+    domains: [vector, memory]
+    capability: 按余弦相似度召回 top-k 记忆或资产
+    risk: low
+
+  - id: semantic_registry
+    kind: tool
+    name: 语义层
+    description: 读取指标/维度注册表（口径真相源）
+    aliases: [语义层, 指标注册表, 维度注册表, 注册表, metric, dimension]
+    domains: [semantic]
+    capability: 读取并校验指标与维度注册表
+    risk: low
+
+  - id: file_export
+    kind: tool
+    name: 文件导出
+    description: 生成并上传文件到对象存储
+    aliases: [导出文件, 生成文件, 上传文件, 文件下载, 存文件]
+    domains: [export, storage]
+    capability: 生成文件并写入对象存储
+    permissions: [analyst]
+    risk: high
+    requires_confirmation: true
+
+  - id: email_send
+    kind: tool
+    name: 邮件发送
+    description: 向指定收件人发送报告邮件
+    aliases: [发邮件, 邮件, 发送邮件, 邮件报告, 订阅]
+    domains: [export, comm]
+    capability: 发送带附件的邮件
+    permissions: [analyst]
+    risk: medium
+    requires_confirmation: true
+
+  - id: llm_gateway
+    kind: tool
+    name: 大模型网关
+    description: 统一调用大模型（结构化输出/摘要/重排）
+    aliases: [大模型, LLM, 模型调用, 摘要, 生成]
+    domains: [llm]
+    capability: 以受控方式调用 LLM 完成结构化输出与摘要
+    risk: medium

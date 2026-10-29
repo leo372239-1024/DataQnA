@@ -1,0 +1,61 @@
+cases:
+- id: RF-001
+  level: L1
+  question: 上月流水是多少
+  expected_metric_ids:
+  - gmv_paid
+  learn_alias: 流水
+- id: RF-002
+  level: L1
+  question: 近30天退货订单数
+  expected_metric_ids:
+  - refund_order_cnt
+  learn_alias: 退货订单数
+- id: RF-003
+  level: L1
+  question: 本月客单是多少
+  expected_metric_ids:
+  - avg_order_value
+  learn_alias: 客单
+- id: RF-004
+  level: L1
+  question: 近一年付费人数
+  expected_metric_ids:
+  - paid_user_cnt
+  learn_alias: 付费人数
+- id: RF-005
+  level: L1
+  question: 上月成交量
+  expected_metric_ids:
+  - order_cnt
+  learn_alias: 成交量
+- id: RF-006
+  level: L1
+  question: 近30天退货率
+  expected_metric_ids:
+  - refund_rate
+  learn_alias: 退货率
+- id: RF-007
+  level: L1
+  question: 本月售卖件数
+  expected_metric_ids:
+  - item_sales_qty
+  learn_alias: 售卖件数
+- id: RF-008
+  level: L1
+  question: 近一年净赚
+  expected_metric_ids:
+  - net_revenue
+  learn_alias: 净赚
+- id: RF-009
+  level: L1
+  question: 上月访问人次
+  expected_metric_ids:
+  - visit_cnt
+  learn_alias: 访问人次
+- id: RF-010
+  level: L1
+  question: 近30天券优惠
+  expected_metric_ids:
+  - coupon_amt
+  learn_alias: 券优惠

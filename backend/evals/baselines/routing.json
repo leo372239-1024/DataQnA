@@ -1,0 +1,41 @@
+{
+  "last_run": {
+    "suite": "routing",
+    "baseline": true,
+    "cases": 15,
+    "route_accuracy_at1": 0.6666666666666666,
+    "total": 15,
+    "passed": 10,
+    "failure_breakdown": [
+      {
+        "code": "TOOL_MISUSE",
+        "count": 5
+      }
+    ]
+  },
+  "history": [
+    {
+      "suite": "routing",
+      "baseline": false,
+      "cases": 15,
+      "route_accuracy_at1": 1.0,
+      "total": 15,
+      "passed": 15,
+      "failure_breakdown": []
+    },
+    {
+      "suite": "routing",
+      "baseline": true,
+      "cases": 15,
+      "route_accuracy_at1": 0.6666666666666666,
+      "total": 15,
+      "passed": 10,
+      "failure_breakdown": [
+        {
+          "code": "TOOL_MISUSE",
+          "count": 5
+        }
+      ]
+    }
+  ]
+}

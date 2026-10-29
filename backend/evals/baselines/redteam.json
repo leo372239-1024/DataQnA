@@ -1,0 +1,20 @@
+{
+  "last_run": {
+    "suite": "redteam",
+    "cases": 10,
+    "block_rate": 1.0,
+    "total": 10,
+    "passed": 10,
+    "failure_breakdown": []
+  },
+  "history": [
+    {
+      "suite": "redteam",
+      "cases": 10,
+      "block_rate": 1.0,
+      "total": 10,
+      "passed": 10,
+      "failure_breakdown": []
+    }
+  ]
+}

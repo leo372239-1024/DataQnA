@@ -1,0 +1,1428 @@
+cases:
+- id: L1-001
+  level: L1
+  question: 上月GMV是多少
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单金额合计
+- id: L1-002
+  level: L1
+  question: 近30天GMV是多少
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+- id: L1-003
+  level: L1
+  question: 上月毛额是多少
+  expected_metric_ids:
+  - gmv_gross
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 下单金额合计
+- id: L1-004
+  level: L1
+  question: 近30天毛额是多少
+  expected_metric_ids:
+  - gmv_gross
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 下单金额合计
+- id: L1-005
+  level: L1
+  question: 上月订单数是多少
+  expected_metric_ids:
+  - order_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单去重计数
+- id: L1-006
+  level: L1
+  question: 近30天订单数是多少
+  expected_metric_ids:
+  - order_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+- id: L1-007
+  level: L1
+  question: 上月退款订单数是多少
+  expected_metric_ids:
+  - refund_order_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款
+- id: L1-008
+  level: L1
+  question: 近30天退款订单数是多少
+  expected_metric_ids:
+  - refund_order_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款
+- id: L1-009
+  level: L1
+  question: 上月退款金额是多少
+  expected_metric_ids:
+  - refund_amt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款金额合计
+- id: L1-010
+  level: L1
+  question: 近30天退款金额是多少
+  expected_metric_ids:
+  - refund_amt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款金额合计
+- id: L1-011
+  level: L1
+  question: 上月支付用户数是多少
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 去重用户数
+- id: L1-012
+  level: L1
+  question: 近30天支付用户数是多少
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+- id: L1-013
+  level: L1
+  question: 上月访问量是多少
+  expected_metric_ids:
+  - visit_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 访问次数合计
+- id: L1-014
+  level: L1
+  question: 近30天访问量是多少
+  expected_metric_ids:
+  - visit_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 访问次数合计
+- id: L1-015
+  level: L1
+  question: 上月销量是多少
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 商品件数合计
+- id: L1-016
+  level: L1
+  question: 近30天销量是多少
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+- id: L1-017
+  level: L1
+  question: 上月运费金额是多少
+  expected_metric_ids:
+  - freight_amt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 运费合计
+- id: L1-018
+  level: L1
+  question: 近30天运费金额是多少
+  expected_metric_ids:
+  - freight_amt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 运费合计
+- id: L1-019
+  level: L1
+  question: 上月优惠券金额是多少
+  expected_metric_ids:
+  - coupon_amt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 优惠券抵扣金额合计
+- id: L1-020
+  level: L1
+  question: 近30天优惠券金额是多少
+  expected_metric_ids:
+  - coupon_amt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 优惠券抵扣金额合计
+- id: L1-021
+  level: L1
+  question: 上月新增用户数是多少
+  expected_metric_ids:
+  - new_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 首次成交
+- id: L1-022
+  level: L1
+  question: 近30天新增用户数是多少
+  expected_metric_ids:
+  - new_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 首次成交
+- id: L1-023
+  level: L1
+  question: 上月发货订单数是多少
+  expected_metric_ids:
+  - shipment_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已发货或已完成
+- id: L1-024
+  level: L1
+  question: 近30天发货订单数是多少
+  expected_metric_ids:
+  - shipment_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已发货或已完成
+- id: L1-025
+  level: L1
+  question: 上月复购用户数是多少
+  expected_metric_ids:
+  - repurchase_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 非首次下单
+- id: L1-026
+  level: L1
+  question: 近30天复购用户数是多少
+  expected_metric_ids:
+  - repurchase_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 非首次下单
+- id: L1-027
+  level: L1
+  question: 上月净营收是多少
+  expected_metric_ids:
+  - net_revenue
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 净收入估算
+- id: L1-028
+  level: L1
+  question: 近30天净营收是多少
+  expected_metric_ids:
+  - net_revenue
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+- id: L1-029
+  level: L1
+  question: 近一年退款率是多少
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L1-030
+  level: L1
+  question: 近一年转化率是多少
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L1-031
+  level: L1
+  question: 近一年客单价是多少
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L1-032
+  level: L1
+  question: 近一年优惠率是多少
+  expected_metric_ids:
+  - coupon_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 优惠券抵扣金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L1-033
+  level: L1
+  question: 近一年运费占比是多少
+  expected_metric_ids:
+  - freight_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 运费金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L1-034
+  level: L1
+  question: 近一年复购率是多少
+  expected_metric_ids:
+  - repurchase_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 复购用户数 ÷ 支付用户数
+  traps:
+  - rate
+- id: L1-035
+  level: L1
+  question: 近一年退款金额率是多少
+  expected_metric_ids:
+  - refund_amt_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L2-001
+  level: L2
+  question: 近30天各品类的GMV
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L2-002
+  level: L2
+  question: 近30天各大区的GMV
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L2-003
+  level: L2
+  question: 近30天各渠道的GMV
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L2-004
+  level: L2
+  question: 近30天各支付方式的GMV
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L2-005
+  level: L2
+  question: 近30天各设备的GMV
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L2-006
+  level: L2
+  question: 近30天各品类的订单数
+  expected_metric_ids:
+  - order_cnt
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L2-007
+  level: L2
+  question: 近30天各大区的订单数
+  expected_metric_ids:
+  - order_cnt
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L2-008
+  level: L2
+  question: 近30天各渠道的订单数
+  expected_metric_ids:
+  - order_cnt
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L2-009
+  level: L2
+  question: 近30天各支付方式的订单数
+  expected_metric_ids:
+  - order_cnt
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L2-010
+  level: L2
+  question: 近30天各设备的订单数
+  expected_metric_ids:
+  - order_cnt
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L2-011
+  level: L2
+  question: 近30天各品类的退款率
+  expected_metric_ids:
+  - refund_rate
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-012
+  level: L2
+  question: 近30天各大区的退款率
+  expected_metric_ids:
+  - refund_rate
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-013
+  level: L2
+  question: 近30天各渠道的退款率
+  expected_metric_ids:
+  - refund_rate
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-014
+  level: L2
+  question: 近30天各支付方式的退款率
+  expected_metric_ids:
+  - refund_rate
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-015
+  level: L2
+  question: 近30天各设备的退款率
+  expected_metric_ids:
+  - refund_rate
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-016
+  level: L2
+  question: 近30天各品类的支付用户数
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L2-017
+  level: L2
+  question: 近30天各大区的支付用户数
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L2-018
+  level: L2
+  question: 近30天各渠道的支付用户数
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L2-019
+  level: L2
+  question: 近30天各支付方式的支付用户数
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L2-020
+  level: L2
+  question: 近30天各设备的支付用户数
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L2-021
+  level: L2
+  question: 近30天各品类的销量
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L2-022
+  level: L2
+  question: 近30天各大区的销量
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L2-023
+  level: L2
+  question: 近30天各渠道的销量
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L2-024
+  level: L2
+  question: 近30天各支付方式的销量
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L2-025
+  level: L2
+  question: 近30天各设备的销量
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L2-026
+  level: L2
+  question: 近30天各品类的净营收
+  expected_metric_ids:
+  - net_revenue
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+  traps: []
+- id: L2-027
+  level: L2
+  question: 近30天各大区的净营收
+  expected_metric_ids:
+  - net_revenue
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+  traps: []
+- id: L2-028
+  level: L2
+  question: 近30天各渠道的净营收
+  expected_metric_ids:
+  - net_revenue
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+  traps: []
+- id: L2-029
+  level: L2
+  question: 近30天各支付方式的净营收
+  expected_metric_ids:
+  - net_revenue
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+  traps: []
+- id: L2-030
+  level: L2
+  question: 近30天各设备的净营收
+  expected_metric_ids:
+  - net_revenue
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 净收入估算
+  traps: []
+- id: L2-031
+  level: L2
+  question: 近30天各品类的客单价
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims:
+  - category
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-032
+  level: L2
+  question: 近30天各大区的客单价
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims:
+  - region
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-033
+  level: L2
+  question: 近30天各渠道的客单价
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims:
+  - channel
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-034
+  level: L2
+  question: 近30天各支付方式的客单价
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims:
+  - payment_method
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L2-035
+  level: L2
+  question: 近30天各设备的客单价
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims:
+  - device
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L3-001
+  level: L3
+  question: 上月GMV环比
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L3-002
+  level: L3
+  question: 上月GMV同比
+  expected_metric_ids:
+  - gmv_paid
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单金额合计
+  traps: []
+- id: L3-003
+  level: L3
+  question: 上月毛额环比
+  expected_metric_ids:
+  - gmv_gross
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 下单金额合计
+  traps: []
+- id: L3-004
+  level: L3
+  question: 上月毛额同比
+  expected_metric_ids:
+  - gmv_gross
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 下单金额合计
+  traps: []
+- id: L3-005
+  level: L3
+  question: 上月订单数环比
+  expected_metric_ids:
+  - order_cnt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L3-006
+  level: L3
+  question: 上月订单数同比
+  expected_metric_ids:
+  - order_cnt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 已支付订单去重计数
+  traps: []
+- id: L3-007
+  level: L3
+  question: 上月退款订单数环比
+  expected_metric_ids:
+  - refund_order_cnt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款
+  traps: []
+- id: L3-008
+  level: L3
+  question: 上月退款订单数同比
+  expected_metric_ids:
+  - refund_order_cnt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款
+  traps: []
+- id: L3-009
+  level: L3
+  question: 上月退款金额环比
+  expected_metric_ids:
+  - refund_amt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款金额合计
+  traps: []
+- id: L3-010
+  level: L3
+  question: 上月退款金额同比
+  expected_metric_ids:
+  - refund_amt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款金额合计
+  traps: []
+- id: L3-011
+  level: L3
+  question: 上月支付用户数环比
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L3-012
+  level: L3
+  question: 上月支付用户数同比
+  expected_metric_ids:
+  - paid_user_cnt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 去重用户数
+  traps: []
+- id: L3-013
+  level: L3
+  question: 上月访问量环比
+  expected_metric_ids:
+  - visit_cnt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 访问次数合计
+  traps: []
+- id: L3-014
+  level: L3
+  question: 上月访问量同比
+  expected_metric_ids:
+  - visit_cnt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 访问次数合计
+  traps: []
+- id: L3-015
+  level: L3
+  question: 上月销量环比
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L3-016
+  level: L3
+  question: 上月销量同比
+  expected_metric_ids:
+  - item_sales_qty
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 商品件数合计
+  traps: []
+- id: L3-017
+  level: L3
+  question: 上月运费金额环比
+  expected_metric_ids:
+  - freight_amt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 运费合计
+  traps: []
+- id: L3-018
+  level: L3
+  question: 上月运费金额同比
+  expected_metric_ids:
+  - freight_amt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 运费合计
+  traps: []
+- id: L3-019
+  level: L3
+  question: 上月优惠券金额环比
+  expected_metric_ids:
+  - coupon_amt
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 优惠券抵扣金额合计
+  traps: []
+- id: L3-020
+  level: L3
+  question: 上月优惠券金额同比
+  expected_metric_ids:
+  - coupon_amt
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 优惠券抵扣金额合计
+  traps: []
+- id: L3-021
+  level: L3
+  question: 上月退款率环比
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L3-022
+  level: L3
+  question: 上月退款率同比
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L3-023
+  level: L3
+  question: 上月转化率环比
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L3-024
+  level: L3
+  question: 上月转化率同比
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L3-025
+  level: L3
+  question: 上月客单价环比
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L3-026
+  level: L3
+  question: 上月客单价同比
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L3-027
+  level: L3
+  question: 上月优惠率环比
+  expected_metric_ids:
+  - coupon_rate
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 优惠券抵扣金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L3-028
+  level: L3
+  question: 上月优惠率同比
+  expected_metric_ids:
+  - coupon_rate
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 优惠券抵扣金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L3-029
+  level: L3
+  question: 上月运费占比环比
+  expected_metric_ids:
+  - freight_rate
+  expected_dims: []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 运费金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L3-030
+  level: L3
+  question: 上月运费占比同比
+  expected_metric_ids:
+  - freight_rate
+  expected_dims: []
+  expected_compare: same_period_ly
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 运费金额 ÷ 成交金额
+  traps:
+  - rate
+- id: L4-001
+  level: L4
+  question: 为什么退款率环比上升了
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: &id001 []
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-002
+  level: L4
+  question: 为什么退款率环比上升了
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id001
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-003
+  level: L4
+  question: 为什么退款率环比上升了
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id001
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-004
+  level: L4
+  question: 为什么退款率环比上升了
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id001
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-005
+  level: L4
+  question: 退款率归因到品类
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: &id002
+  - category
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-006
+  level: L4
+  question: 退款率归因到品类
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id002
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-007
+  level: L4
+  question: 退款率归因到品类
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id002
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-008
+  level: L4
+  question: 退款率归因到品类
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id002
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-009
+  level: L4
+  question: 客单价为什么下降了，归因到品类
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: &id003
+  - category
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-010
+  level: L4
+  question: 客单价为什么下降了，归因到品类
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: *id003
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-011
+  level: L4
+  question: 客单价为什么下降了，归因到品类
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: *id003
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-012
+  level: L4
+  question: 客单价为什么下降了，归因到品类
+  expected_metric_ids:
+  - avg_order_value
+  expected_dims: *id003
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 成交金额 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-013
+  level: L4
+  question: 转化率下降归因到渠道
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: &id004
+  - channel
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L4-014
+  level: L4
+  question: 转化率下降归因到渠道
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: *id004
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L4-015
+  level: L4
+  question: 转化率下降归因到渠道
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: *id004
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L4-016
+  level: L4
+  question: 转化率下降归因到渠道
+  expected_metric_ids:
+  - conversion_rate
+  expected_dims: *id004
+  expected_compare: null
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: 支付用户数 ÷ 访问量
+  traps:
+  - rate
+- id: L4-017
+  level: L4
+  question: 退款率环比上升了，是哪个大区导致的
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: &id005
+  - region
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-018
+  level: L4
+  question: 退款率环比上升了，是哪个大区导致的
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id005
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-019
+  level: L4
+  question: 退款率环比上升了，是哪个大区导致的
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id005
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L4-020
+  level: L4
+  question: 退款率环比上升了，是哪个大区导致的
+  expected_metric_ids:
+  - refund_rate
+  expected_dims: *id005
+  expected_compare: prev_period
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: 退款订单数 ÷ 支付订单数
+  traps:
+  - rate
+- id: L5-001
+  level: L5
+  question: 本月GMV、订单数和退款率
+  expected_metric_ids:
+  - gmv_paid
+  - order_cnt
+  - refund_rate
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-002
+  level: L5
+  question: 上月成交金额和支付用户数
+  expected_metric_ids:
+  - gmv_paid
+  - paid_user_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: ''
+  traps: []
+- id: L5-003
+  level: L5
+  question: 近30天订单数、退款订单数和退款率
+  expected_metric_ids:
+  - order_cnt
+  - refund_order_cnt
+  - refund_rate
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-004
+  level: L5
+  question: 本月GMV和客单价
+  expected_metric_ids:
+  - gmv_paid
+  - avg_order_value
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-005
+  level: L5
+  question: 近一年新增用户数和复购率
+  expected_metric_ids:
+  - new_user_cnt
+  - repurchase_rate
+  expected_dims: []
+  expected_time_start: '2025-10-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-006
+  level: L5
+  question: 本月访问量和转化率
+  expected_metric_ids:
+  - visit_cnt
+  - conversion_rate
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-007
+  level: L5
+  question: 上月运费金额和运费占比
+  expected_metric_ids:
+  - freight_amt
+  - freight_rate
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-008
+  level: L5
+  question: 近30天优惠券金额和优惠率
+  expected_metric_ids:
+  - coupon_amt
+  - coupon_rate
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps:
+  - rate
+- id: L5-009
+  level: L5
+  question: 本月净营收和退款金额
+  expected_metric_ids:
+  - net_revenue
+  - refund_amt
+  expected_dims: []
+  expected_time_start: '2026-09-01'
+  expected_time_end: '2026-10-01'
+  caliber_check: ''
+  traps: []
+- id: L5-010
+  level: L5
+  question: 上月发货订单数和退款订单数
+  expected_metric_ids:
+  - shipment_cnt
+  - refund_order_cnt
+  expected_dims: []
+  expected_time_start: '2026-08-01'
+  expected_time_end: '2026-09-01'
+  caliber_check: ''
+  traps: []
